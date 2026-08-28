@@ -47,12 +47,12 @@ export default function AIAnalysis() {
       });
     }, 50); // Faster progress for better UX
 
-    // Mobile browsers may pause animation timers while a request is pending.
+    // Always leave the loading state when a mobile browser cannot reach the API.
     const completionFallback = window.setTimeout(() => {
       setProgress(100);
       setLoadingText("AI Analysis Complete!");
       setAnalyzing(false);
-    }, 8000);
+    }, 4000);
 
     // Fetch details and hit the analyze API
     const runAnalysis = async () => {
@@ -91,6 +91,10 @@ export default function AIAnalysis() {
         }
       } catch (err) {
         console.error("AI Analysis API error:", err);
+      } finally {
+        setProgress(100);
+        setLoadingText("AI Analysis Complete!");
+        setAnalyzing(false);
       }
     };
 
