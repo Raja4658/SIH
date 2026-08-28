@@ -58,9 +58,8 @@ export default function AIAnalysis() {
     // Fetch details and hit the analyze API
     const runAnalysis = async () => {
       const apiBase = API_BASE;
+      let description = "Garbage collection is not happening regularly in our area.";
       try {
-        // 1. Fetch description from problem API
-        let description = "Garbage collection is not happening regularly in our area.";
         if (problemId) {
           const res = await fetch(`${apiBase}/problems/${problemId}`, { signal: AbortSignal.timeout(5000) });
           if (res.ok) {
