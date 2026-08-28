@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Globe2, Lightbulb, Link2, Sprout, Building, Users } from "lucide-react";
+import { ArrowRight, Globe2, Lightbulb, Sprout, Building, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 
@@ -16,7 +16,7 @@ export default function Home() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
   };
 
   return (

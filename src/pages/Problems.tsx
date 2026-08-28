@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, AlertCircle, Calendar, ArrowRight, BrainCircuit, GraduationCap, School, Briefcase, Heart, Landmark, User, ShieldCheck } from "lucide-react";
+import { MapPin, AlertCircle, Calendar, BrainCircuit, GraduationCap, School, Briefcase, Heart, Landmark, User } from "lucide-react";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
