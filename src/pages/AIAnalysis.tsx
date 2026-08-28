@@ -4,6 +4,7 @@ import { BrainCircuit, AlertTriangle, Users, Map, CheckCircle2 } from "lucide-re
 import { Button } from "../components/ui/button";
 import { Link, useSearchParams } from "react-router-dom";
 import { Card, CardContent } from "../components/ui/card";
+import { API_BASE } from "../lib/api";
 
 export default function AIAnalysis() {
   const [searchParams] = useSearchParams();
@@ -56,7 +57,7 @@ export default function AIAnalysis() {
 
     // Fetch details and hit the analyze API
     const runAnalysis = async () => {
-      const apiBase = `http://${window.location.hostname}:8000`;
+      const apiBase = API_BASE;
       try {
         // 1. Fetch description from problem API
         let description = "Garbage collection is not happening regularly in our area.";

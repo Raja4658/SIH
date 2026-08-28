@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { MapPin, UploadCloud, ChevronRight, CheckCircle2 } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { API_BASE } from "../lib/api";
 
 const categories = ["Waste Management", "Water", "Agriculture", "Transportation", "Education", "Environment", "Public Safety", "Infrastructure"];
 
@@ -15,7 +16,7 @@ export default function ReportProblem() {
   const handleNext = () => setStep(step + 1);
 
   const handleSubmit = async () => {
-    const apiBase = `http://${window.location.hostname}:8000`;
+    const apiBase = API_BASE;
     setStep(4);
     try {
       const response = await fetch(`${apiBase}/problems`, {

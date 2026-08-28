@@ -5,6 +5,7 @@ import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 import { useRole } from "../context/RoleContext";
+import { API_BASE } from "../lib/api";
 
 interface Problem {
   id: string;
@@ -24,7 +25,7 @@ export default function Problems() {
 
   useEffect(() => {
     const fetchProblems = async () => {
-      const apiBase = `http://${window.location.hostname}:8000`;
+      const apiBase = API_BASE;
       try {
         const res = await fetch(`${apiBase}/problems`);
         if (res.ok) {

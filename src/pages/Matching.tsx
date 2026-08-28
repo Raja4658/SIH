@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Network, Building2, Lightbulb, Users2, ArrowRight, X, CheckCircle2 } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { API_BASE } from "../lib/api";
 
 const matches = [
   {
@@ -72,7 +73,7 @@ export default function Matching() {
   useEffect(() => {
     let active = true;
     const fetchAndMatch = async () => {
-      const apiBase = `http://${window.location.hostname}:8000`;
+      const apiBase = API_BASE;
       try {
         setLoading(true);
         // 1. Fetch the problem details
