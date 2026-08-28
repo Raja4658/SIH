@@ -24,8 +24,9 @@ export default function Problems() {
 
   useEffect(() => {
     const fetchProblems = async () => {
+      const apiBase = `http://${window.location.hostname}:8000`;
       try {
-        const res = await fetch("http://127.0.0.1:8000/problems");
+        const res = await fetch(`${apiBase}/problems`);
         if (res.ok) {
           const data = await res.json();
           setProblems(data.reverse());

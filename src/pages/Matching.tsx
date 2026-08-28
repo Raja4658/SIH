@@ -72,12 +72,13 @@ export default function Matching() {
   useEffect(() => {
     let active = true;
     const fetchAndMatch = async () => {
+      const apiBase = `http://${window.location.hostname}:8000`;
       try {
         setLoading(true);
         // 1. Fetch the problem details
         let description = "Garbage collection is not happening regularly in our area.";
         if (problemId) {
-          const res = await fetch(`http://127.0.0.1:8000/problems/${problemId}`);
+          const res = await fetch(`${apiBase}/problems/${problemId}`);
           if (res.ok && active) {
             const prob = await res.json();
             description = prob.description;
@@ -88,7 +89,7 @@ export default function Matching() {
         if (!active) return;
 
         // 2. Fetch AI Matches
-        const matchRes = await fetch("http://127.0.0.1:8000/ai/match", {
+        const matchRes = await fetch(`${apiBase}/ai/match`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

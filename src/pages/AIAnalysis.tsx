@@ -49,11 +49,12 @@ export default function AIAnalysis() {
 
     // Fetch details and hit the analyze API
     const runAnalysis = async () => {
+      const apiBase = `http://${window.location.hostname}:8000`;
       try {
         // 1. Fetch description from problem API
         let description = "Garbage collection is not happening regularly in our area.";
         if (problemId) {
-          const res = await fetch(`http://127.0.0.1:8000/problems/${problemId}`);
+          const res = await fetch(`${apiBase}/problems/${problemId}`);
           if (res.ok) {
             const prob = await res.json();
             description = prob.description;
@@ -64,7 +65,7 @@ export default function AIAnalysis() {
         }
 
         // 2. Run AI Analysis
-        const analysisRes = await fetch("http://127.0.0.1:8000/ai/analyze", {
+        const analysisRes = await fetch(`${apiBase}/ai/analyze`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -15,9 +15,10 @@ export default function ReportProblem() {
   const handleNext = () => setStep(step + 1);
 
   const handleSubmit = async () => {
+    const apiBase = `http://${window.location.hostname}:8000`;
     setStep(4);
     try {
-      const response = await fetch("http://127.0.0.1:8000/problems", {
+      const response = await fetch(`${apiBase}/problems`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
