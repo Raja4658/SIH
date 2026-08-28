@@ -26,6 +26,7 @@ dist-ssr
 # Python/Backend/Scratch virtual environment and database
 backend/venv
 backend/sql_app.db
+backend/.env
 **/__pycache__
 *.pyc
 scratch/
