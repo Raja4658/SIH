@@ -47,6 +47,13 @@ export default function AIAnalysis() {
       });
     }, 50); // Faster progress for better UX
 
+    // Mobile browsers may pause animation timers while a request is pending.
+    const completionFallback = window.setTimeout(() => {
+      setProgress(100);
+      setLoadingText("AI Analysis Complete!");
+      setAnalyzing(false);
+    }, 8000);
+
     // Fetch details and hit the analyze API
     const runAnalysis = async () => {
       const apiBase = `http://${window.location.hostname}:8000`;
@@ -54,7 +61,7 @@ export default function AIAnalysis() {
         // 1. Fetch description from problem API
         let description = "Garbage collection is not happening regularly in our area.";
         if (problemId) {
-          const res = await fetch(`${apiBase}/problems/${problemId}`);
+          const res = await fetch(`${apiBase}/problems/${problemId}`, { signal: AbortSignal.timeout(5000) });
           if (res.ok) {
             const prob = await res.json();
             description = prob.description;
@@ -68,6 +75,7 @@ export default function AIAnalysis() {
         const analysisRes = await fetch(`${apiBase}/ai/analyze`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          signal: AbortSignal.timeout(5000),
           body: JSON.stringify({
             problem_id: problemId || "default-id",
             description: description
@@ -88,7 +96,10 @@ export default function AIAnalysis() {
 
     runAnalysis();
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(completionFallback);
+    };
   }, [problemId]);
 
   return (
